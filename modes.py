@@ -26,17 +26,19 @@ def OnePlayer(words):
     print(f"The word was {word}")
 
 def BotPlayer(words):
-    word = ""
-    while word not in words:
-        word = input("Type in a word: ")
-        print("\033[1A[\033[2K", end="\b") # Erase last input
-    
     bot = Bot(words)
+    
+    print("Input the colours after each guess (G = green, Y = yellow, B = black)")
+    print("Example: GGYBY\n")
 
     for i in range(6):
         guess = bot.guess()
-
-        hints = check(word, guess)
+        
+        print(guess)
+        hints = list(map(str, input()))
+        
+        print("\033[1A[\033[2K", end="\b")
+        print("\033[1A[\033[2K", end="\b")
         printCheck(guess, hints)
 
         if hints == ["G", "G", "G", "G", "G"]:
@@ -48,18 +50,5 @@ def BotPlayer(words):
         
         bot.filter(guess, hints)
 
-    print(f'The bot could not guess "{word}" in 6 tries or less')
+    print(f'The bot could not guess tiyr wird in 6 tries or less')
 
-def BotCheat(words):
-    bot = Bot(words)
-
-    for i in range(6):
-        guess = bot.guess()
-        print(guess)
-
-        hints = list(map(str, input()))
-
-        if hints == ["G", "G", "G", "G", "G"]:
-            return
-        
-        bot.filter(guess, hints)
