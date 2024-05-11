@@ -4,6 +4,10 @@ class Bot:
     def __init__(self, words):
         self.words = words
     
+    def new_guess(self, old_word):
+        self.words.remove(old_word)
+        return self.guess()
+    
     def guess(self):
         guess = ""
         highest_p = 0

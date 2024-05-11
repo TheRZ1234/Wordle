@@ -29,13 +29,23 @@ def BotPlayer(words):
     bot = Bot(words)
     
     print("Input the colours after each guess (G = green, Y = yellow, B = black)")
-    print("Example: GGYBY\n")
+    print("Example: GGYBY")
+    print('Input "change" to change guess\n')
 
     for i in range(6):
         guess = bot.guess()
         
         print(guess)
-        hints = list(map(str, input()))
+        hints = input()
+        
+        while hints == "change":
+            print("\033[1A[\033[2K", end="\b")
+            print("\033[1A[\033[2K", end="\b")
+            guess = bot.new_guess(guess)
+            print(guess)
+            hints = input()
+        
+        hints = list(map(str, hints))
         
         print("\033[1A[\033[2K", end="\b")
         print("\033[1A[\033[2K", end="\b")
