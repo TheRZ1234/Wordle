@@ -2,7 +2,7 @@ from modes import OnePlayer, BotPlayer, BotCheat
 from tools import loadWords
 
 def main():
-    type = int(input("Options:\n1. Player\n2. Bot\n3. Cheat\nChoose: "))
+    type = int(input("\nOptions:\n1. Player\n2. Bot\n3. Cheat\nChoose: "))
     print("\n")
 
     words = loadWords()

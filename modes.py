@@ -40,6 +40,10 @@ def BotPlayer(words):
         printCheck(guess, hints)
 
         if hints == ["G", "G", "G", "G", "G"]:
+            if i == 0:
+                print("The bot guessed your word in 1 try")
+            else:
+                print(f"The bot guessed your word in {i+1} tries")
             return
         
         bot.filter(guess, hints)
