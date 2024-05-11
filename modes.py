@@ -3,9 +3,9 @@ from tools import check, printCheck
 from bot import Bot
 
 def OnePlayer(words):
-    word = "tidal"
-    #with open("COMMON_WORDS.txt", "r") as file:
-        #word = choice(file.read().splitlines())
+    word = ""
+    with open("COMMON_WORDS.txt", "r") as file:
+        word = choice(file.read().splitlines())
     
     print("6 tries to guess a 5-letter word")
     
@@ -20,7 +20,7 @@ def OnePlayer(words):
         printCheck(guess, hints)
 
         if hints == ["G", "G", "G", "G", "G"]:
-            print("Splendid!")
+            print("You win!")
             return
     
     print(f"The word was {word}")
