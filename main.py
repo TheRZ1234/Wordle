@@ -1,7 +1,9 @@
 from modes import OnePlayer, BotPlayer, BotCheat
 from tools import loadWords
+from colorama import Style
 
 def main():
+    print(Style.RESET_ALL)
     type = int(input("\nOptions:\n1. Player\n2. Bot\n3. Cheat\nChoose: "))
     print("\n")
 

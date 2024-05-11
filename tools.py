@@ -13,17 +13,28 @@ def check(word, guess):
         if guess[i] == word[i]:
             hints.append("G")
             if i in checked:
-                for j in range(i):
+                for j in range(5):
                     if guess[j] == guess[i]:
                         hints[j] = "B"
                         break
 
             checked.append(i)
-        elif guess[i] in word and word.index(guess[i]) not in checked:
-            hints.append("Y")
-            checked.append(word.index(guess[i]))
+            
+        elif guess[i] in word:
+            repeated = True
+            for j in range(5):
+                if guess[i] == word[j] and j not in checked:
+                    hints.append("Y")
+                    checked.append(j)
+                    repeated = False
+                    break
+           
+            if repeated:
+                hints.append("B")
+        
         else:
             hints.append("B")
+        
     return hints
 
 def printCheck(guess, hints):

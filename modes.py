@@ -48,7 +48,7 @@ def BotPlayer(words):
         
         bot.filter(guess, hints)
 
-    print(f"The word was {word}")
+    print(f'The bot could not guess "{word}" in 6 tries or less')
 
 def BotCheat(words):
     bot = Bot(words)
