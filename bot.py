@@ -1,17 +1,17 @@
-from probabilities import probabilities
+from const import probabilities, diffFactor
 
 class Bot:
     def __init__(self, words):
         self.words = words
-        self.FIRST_GUESS = "crane"
+        #self.FIRST_GUESS = "slate"
         
         self.sort_highest()
     
     def sort_highest(self):
-        self.words = sorted(self.words, key=self.calculate_probability)
+        self.words = sorted(self.words, key=self.calculate_rank)
         
-        self.words.remove(self.FIRST_GUESS)
-        self.words.append(self.FIRST_GUESS)
+       # self.words.remove(self.FIRST_GUESS)
+       # self.words.append(self.FIRST_GUESS)
     
     def new_guess(self, old_word):
         self.words.remove(old_word)
@@ -59,8 +59,9 @@ class Bot:
         self.words = new_words
 
 
-    def calculate_probability(self, word):
-        probability = 1
-        for c in word.upper():
-            probability *= probabilities[c]
-        return probability
+    def calculate_rank(self, word):
+        rank = 0
+        for c in word.upper(): rank += probabilities[c]
+        rank /= 5
+        rank += diffFactor*len("".join(set(word)))
+        return rank

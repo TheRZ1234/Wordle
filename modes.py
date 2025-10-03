@@ -3,9 +3,7 @@ from tools import check, printCheck
 from bot import Bot
 
 def OnePlayer(words):
-    word = ""
-    with open("COMMON_WORDS.txt", "r") as file:
-        word = choice(file.read().splitlines())
+    word = choice(words)
     
     print("6 tries to guess a 5-letter word")
     
@@ -62,3 +60,25 @@ def BotPlayer(words):
 
     print(f'The bot could not guess tiyr wird in 6 tries or less')
 
+def simulate(words):
+    sum, cnt = 0, 0
+    fails = []
+    for w in words:
+        bot = Bot(words)
+        ok = 0
+        for i in range(6):
+            guess = bot.guess()
+            hints = check(w, guess)
+            if hints == ["G", "G", "G", "G", "G"]:
+                sum += i+1
+                cnt += 1
+                ok = 1
+                break
+            bot.filter(guess, hints)
+        if (not ok):
+            fails.append(w)
+
+    print(f"Avg: {(100*(sum/cnt))/100}, Fails: {len(fails)}")
+    with open("failed_words.txt", "w") as file:
+        for f in fails:
+            file.write(f"{f}\n")

@@ -1,18 +1,21 @@
-from modes import OnePlayer, BotPlayer
-from tools import loadWords
-from colorama import Style
+from modes import OnePlayer, BotPlayer, simulate
+from tools import loadWords, calc
+from const import wordsFile
 
 def main():
-    print(Style.RESET_ALL)
-    type = int(input("\nOptions:\n1. Player\n2. Bot\nChoose: "))
+    type = int(input("\nOptions:\n1. Player\n2. Bot\n3. Simulate\n4. Calculate\nChoose: "))
     print("\n")
 
-    words = loadWords()
+    words = loadWords(wordsFile)
 
     if type == 1:
         OnePlayer(words)
     elif type == 2:
         BotPlayer(words)
+    elif type == 3:
+        simulate(words)
+    elif type == 4:
+        calc(words)
     
     print("\n")
 
