@@ -58,7 +58,7 @@ def BotPlayer(words):
         
         bot.filter(guess, hints)
 
-    print(f'The bot could not guess tiyr wird in 6 tries or less')
+    print(f'The bot could not guess the word in 6 tries or less')
 
 def simulate(words):
     sum, cnt = 0, 0
