@@ -1,4 +1,6 @@
 wordsFile = "valid_words.txt"
+freFile = "fre.txt"
+
 diffFactor = 3.8
 probabilities = {
     'A' : 8.3,

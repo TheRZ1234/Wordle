@@ -4,7 +4,6 @@ from bot import Bot
 
 def OnePlayer(words):
     word = choice(words)
-    
     print("6 tries to guess a 5-letter word")
     
     for i in range(6):
@@ -63,8 +62,9 @@ def BotPlayer(words):
 def simulate(words):
     sum, cnt = 0, 0
     fails = []
+    bot = Bot(words)
     for w in words:
-        bot = Bot(words)
+        bot.resetWords(words)
         ok = 0
         for i in range(6):
             guess = bot.guess()

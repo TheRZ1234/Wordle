@@ -4,7 +4,7 @@ def loadWords(file):
         words = file.read().splitlines()
     return words
 
-def calc(words):
+def calcProb(words):
     fre = dict()
     for i in range(26):
         fre[i] = 0
@@ -18,6 +18,23 @@ def calc(words):
     for i in range(26):
         print(f"'{chr(i+ord('A'))}' : {int(10*(100*(fre[i]/tot)))/10},")
 
+def calcFre(words, freFile):
+    fre = dict()
+    for i in range(26):
+        fre[i] = dict()
+        for j in range(5):
+            fre[i][j] = 0
+
+    for s in words:
+        for i in range(5):
+            fre[ord(s[i])-ord('a')][i] += 1
+    
+    with open(freFile, "w") as file:
+        for i in range(26):
+            for j in range(5):
+                file.write(f"{fre[i][j]} ")
+            file.write("\n")
+
 def check(word, guess):
     hints = ["B", "B", "B", "B", "B"]
     rem = ""
@@ -28,7 +45,7 @@ def check(word, guess):
         if hints[i] == "G": continue
         if guess[i] in rem:
             hints[i] = "Y"
-            rem.replace(guess[i], "", 1)
+            rem = rem.replace(guess[i], "", 1)
     return hints
 
 def printCheck(guess, hints):

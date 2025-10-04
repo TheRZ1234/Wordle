@@ -1,9 +1,9 @@
 from modes import OnePlayer, BotPlayer, simulate
-from tools import loadWords, calc
+from tools import loadWords
 from const import wordsFile
 
 def main():
-    type = int(input("\nOptions:\n1. Player\n2. Bot\n3. Simulate\n4. Calculate\nChoose: "))
+    type = int(input("\nOptions:\n1. Player\n2. Bot\n3. Simulate\nChoose: "))
     print("\n")
 
     words = loadWords(wordsFile)
@@ -14,8 +14,6 @@ def main():
         BotPlayer(words)
     elif type == 3:
         simulate(words)
-    elif type == 4:
-        calc(words)
     
     print("\n")
 
